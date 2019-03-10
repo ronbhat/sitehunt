@@ -90,29 +90,31 @@
 
 	<!-- Search Results -->
 
-	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+	<div class="modal fade" tabindex="-1" role="dialog" id="search-modal">
 		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
+						<h2>Search Results</h2>
+						<br><br>
 						<table id="t01">
-							<tr>
-								<h2>Search Results<h2>
-							</tr><br><br>
-							<tr>
-								<th>Result</th>
-								<th>Address</th>
-								<th>Contact</th>
-								<th>Action</th>
+							<thead>
+								<tr>
+									<th>Result</th>
+									<th>Address</th>
+									<th>Contact</th>
+									<th>Action</th>
 
-							</tr>
-							<tr>
-								<td><a href="Portfolio.html"><b>Kangra Fort</b></a></td>
-								<td>Barnai Muthi</td>
-								<td>9596650999</td>
-								<td><input class='btn btn-success' type='button' value='Book Now' /></td>
+								</tr>
+							</thead>
+							<tbody id="search-results">
+								<tr>
+									<td><a href="Portfolio.html"><b>Kangra Fort</b></a></td>
+									<td>Barnai Muthi</td>
+									<td>9596650999</td>
+									<td><input class='btn btn-success' type='button' value='Book Now' /></td>
 
-							</tr>
-
+								</tr>
+							</tbody>
 						</table>
 					</div>
 
@@ -140,7 +142,7 @@
 			<h3 class="title-w3ls mb-md-5 mb-4 font-weight-bold text-center">Begin Your Search</h3>
 			<div class="place-grids">
 
-				<form class="form-inline" onsubmit="openModal()" id="myForm">
+				<form class="form-inline" id="search-form">
 					<div class="form-group" style="margin-right: 50px;">
 						<label for="city">Choose City:</label>
 						<select class="form-control" name="city" id="city">
@@ -161,7 +163,7 @@
 					</div>
 					<div class="form-group" name="date" style="margin-right: 50px;">
 						<label for="date">Date:</label><br>
-						<input type="date" class="form-control" id="date">
+						<input type="date" name="date" class="form-control" id="date">
 					</div>
 
 					<button type="submit" class="btn btn-success">Submit</button>

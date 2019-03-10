@@ -9,6 +9,7 @@
         $fname = testInput($_POST["fname"], $conn);
         $lname = testInput($_POST["lname"], $conn);
         $uname = testInput($_POST["uname"], $conn);
+        $buss_name = testInput($_POST["buss_name"], $conn);
         $contact = testInput($_POST["contact"], $conn);
         $email = testInput($_POST["email"], $conn);
         $city = testInput($_POST["city"], $conn);
@@ -16,7 +17,7 @@
         $buss_type = testInput($_POST["buss_type"], $conn);
         $pass = testInput($_POST["pass"], $conn);
 
-        $sql = "INSERT INTO users (fname, lname, uname, contact, email, city, address, business_type, password) VALUES ('$fname', '$lname', '$uname', '$contact', '$email', '$city', '$addr', '$buss_type', '$pass')";
+        $sql = "INSERT INTO users (fname, lname, uname, buss_name, contact, email, city, address, business_type, password) VALUES ('$fname', '$lname', '$uname', '$buss_name', '$contact', '$email', '$city', '$addr', '$buss_type', '$pass')";
 
         $obj = new \stdClass();
 
@@ -42,7 +43,7 @@
 
     function checkRequest() {
         $res = false;
-        if(($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["uname"]) && isset($_POST["contact"]) && isset($_POST["email"]) && isset($_POST["city"]) && isset($_POST["addr"]) && isset($_POST["buss_type"]) && isset($_POST["pass"])) {
+        if(($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["uname"]) && isset($_POST["contact"]) && isset($_POST["email"]) && isset($_POST["city"]) && isset($_POST["addr"]) && isset($_POST["buss_type"]) && isset($_POST["pass"]) && isset($_POST["buss_name"])) {
             $res = true;
         } 
         return $res;

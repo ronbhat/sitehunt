@@ -2,7 +2,7 @@
 <?php
 	require_once('services/db_connect.php');
 	$uid = $_SESSION["user"]["uid"];
-	$sql = "SELECT * FROM bookings WHERE uid = $uid";
+	$sql = "SELECT * FROM bookings WHERE uid = $uid AND start_date >= CURRENT_DATE ORDER BY start_date";
 	
 	if(!($result = $conn->query($sql))) {
 		header('HTTP/1.0 500 Internal Server Error');
@@ -622,8 +622,17 @@
 						selectable: true,
 						selectHelper: true,
 						select: function (start, end, allDay) {
-							var title = prompt('Event Title:');
-							if (title) {
+							var title = prompt('Enter event title:');
+							if (!title) {
+								return;
+							}
+							var clientName = prompt("Enter client's name:");
+							if (!clientName) {
+								return;
+							}
+							var clientContact = prompt("Enter client's contact:");
+
+							if (clientContact) {
 								calendar.fullCalendar('renderEvent',
 									{
 										title: title,
@@ -650,12 +659,15 @@
 									type: "GET",
 									data: {
 										title: title,
+										clientName: clientName,
+										clientContact: clientContact,
 										start: startDate,
 										end: endDate,
 									},
 									success: function (res) {
 										if (res.result) {
 											alert("Event Added Successfully!!");
+											location.reload();
 										} else {
 											alert("There was an error. Please try again!!");
 											console.error("Error: " + res.msg);

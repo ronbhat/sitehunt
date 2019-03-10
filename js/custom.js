@@ -2,11 +2,13 @@
     "use strict";
     var REG_FORM;
     var LOGIN_FORM;
+    var SEARCH_FORM;
 
     function init() {
         // Initialize variables
         REG_FORM = $('#reg-form');
         LOGIN_FORM = $('#login-form');
+        SEARCH_FORM = $('#search-form');
 
         // Bind events
         bindEvents();
@@ -15,6 +17,7 @@
     function bindEvents() {
         REG_FORM.submit(registerUser);
         LOGIN_FORM.submit(loginUser);
+        SEARCH_FORM.submit(search);
     }
 
     /**
@@ -76,6 +79,42 @@
                         console.error(res.msg);
                     }
                 }
+            },
+            error: function (err) {
+                console.log(err);
+                alert('Some network error occurred!!');
+            }
+        });
+    }
+
+    /**
+     * Function to perform the search
+     */
+    function search(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'services/search.php',
+            method: 'POST',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (res) {
+                var searchResults = $('#search-results');
+                var data = res.data;
+                searchResults.empty();
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var result = data[i];
+                        var resultRow = "";
+                        resultRow = '<tr><td><a href="portfolio.php"><b>' + result.buss_name + '</b></a></td><td>' + result.address + '</td><td>' + result.contact + '</td><td><input class="btn btn-success" type="button" value="Book Now" /></td></tr>'
+                        console.log(resultRow);
+                        searchResults.append(resultRow);
+                    }
+                    $("#search-modal").modal();
+                } else {
+                    alert("Sorry!! We could't find any result for your search");
+                }   
             },
             error: function (err) {
                 console.log(err);

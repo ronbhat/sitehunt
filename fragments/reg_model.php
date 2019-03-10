@@ -24,8 +24,12 @@
                             <input type="text" class="form-control" name="uname" placeholder="" required="">
                         </div>
                         <div class="form-group">
+                            <label>Business Name</label>
+                            <input type="text" class="form-control" name="buss_name" placeholder="" required="">
+                        </div>
+                        <div class="form-group">
                             <label>Contact</label>
-                            <input type="text" class="form-control" name="contact" placeholder="" required="">
+                            <input type="number" class="form-control" name="contact" placeholder="" required="">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
@@ -43,7 +47,7 @@
 
                         <div class="form-group">
                             <label>Address</label>
-                            <textarea cols="50" rows="3" name="addr" maxlength="10" class="form-control"
+                            <textarea cols="50" rows="3" name="addr" class="form-control"
                                 placeholder=""></textarea>
                         </div>
                         <div class="form-group">

@@ -11,12 +11,14 @@
         header("Content-Type: application/json; charset=UTF-8");
 	
 		$title = testInput($_GET["title"], $conn);
+		$client_name = testInput($_GET["clientName"], $conn);
+		$client_contact = testInput($_GET["clientContact"], $conn);
 		$start = date("Y-m-d", strtotime($_GET["start"]));
 		$end = date("Y-m-d", strtotime($_GET["end"]));
 		$uid = $_SESSION["user"]["uid"];
 		$obj = new \stdClass();
 		
-		$sql = "INSERT INTO bookings (event_title, start_date, end_date, uid) VALUES ('$title', '$start', '$end', $uid)";
+		$sql = "INSERT INTO bookings (event_title, client_name, contact, start_date, end_date, uid) VALUES ('$title', '$client_name', '$client_contact', '$start', '$end', $uid)";
 		
 		if($conn->query($sql)) {
 			$obj->result = true;

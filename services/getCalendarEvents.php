@@ -24,7 +24,7 @@
 				}
 			}
 		} else {
-			header('HTTP/1.0 400 Bad Request');
+			header('HTTP/1.0 500 Internal Server Error');
 		}
 		
 		echo json_encode($data);
