@@ -1,3 +1,14 @@
+<?php require_once('services/authorization.php')?>
+<?php
+	require_once('services/db_connect.php');
+	$uid = $_SESSION["user"]["uid"];
+	$sql = "SELECT * FROM bookings WHERE uid = $uid";
+	
+	if(!($result = $conn->query($sql))) {
+		header('HTTP/1.0 500 Internal Server Error');
+		die();
+	}
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -6,7 +17,7 @@
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
-	
+
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -24,53 +35,58 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<!-- Style-CSS -->
 	<link rel="stylesheet" href="css/fontawesome-all.css">
-	
-    <link rel="stylesheet" type="text/css" id="theme" href="css/fullcalendar.css"/>
+
+	<link rel="stylesheet" type="text/css" id="theme" href="css/fullcalendar.css" />
 
 	<!-- Font-Awesome-Icons-CSS -->
 	<!-- //Custom-Files -->
 
 	<!-- Web-Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+		rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
 	<!-- //Web-Fonts -->
 	<!-- //Table Style -->
-	
-	<style>
-table {
-  width:100%;
-}
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-table#t01 tr:nth-child(even) {
-  background-color: #eee;
-}
-table#t01 tr:nth-child(odd) {
- background-color: #fff;
-}
-table#t01 th {
-  background-color: black;
-  color: white;
-}
 
-.calendar-frame {
-	margin: 20px auto;
-}
-</style>
-	
+	<style>
+		table {
+			width: 100%;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			padding: 15px;
+			text-align: left;
+		}
+
+		table#t01 tr:nth-child(even) {
+			background-color: #eee;
+		}
+
+		table#t01 tr:nth-child(odd) {
+			background-color: #fff;
+		}
+
+		table#t01 th {
+			background-color: black;
+			color: white;
+		}
+
+		.calendar-frame {
+			margin: 20px auto;
+		}
+	</style>
 	<!-- //Table Style -->
-	
-	
-	
-	
-	
+
 </head>
 
 <body>
@@ -80,41 +96,80 @@ table#t01 th {
 		<header>
 			<div class="header_topw3layouts_bar">
 				<div class="container">
+					
 					<!-- header-top -->
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					<div class="row border-bottom py-lg-4 py-3">
+						<div class="col-xl-7 col-lg-6 header_agileits_left">
+							<ul>
+								<li class="mr-3">
+									<i class="fas fa-phone mr-2"></i> +(91)95966650999</li>
+								<li>
+									<i class="fas fa-envelope mr-2"></i>
+									<a href="mailto:contact@BanQuest.com">contact@SiteHunt.com</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-xl-5 col-lg-6 header_right text-center mt-lg-0 mt-2">
+							<div class="row">
+								<!-- social icons -->
+								<div class="col-4 w3social-icons">
+									<ul>
+										<li>
+											<a href="#" class="rounded-circle">
+												<i class="fab fa-facebook-f"></i>
+											</a>
+										</li>
+										<li class="px-2">
+											<a href="#" class="rounded-circle">
+												<i class="fab fa-google-plus-g"></i>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="rounded-circle">
+												<i class="fab fa-twitter"></i>
+											</a>
+										</li>
+										<li class="pl-2">
+											<a href="#" class="rounded-circle">
+												<i class="fab fa-dribbble"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<!-- //social icons -->
+
+								<?php require_once('fragments/nav_buttons.php')?>
+
+							</div>
+						</div>
+					</div>
 					<!--// header-top -->
 
 					<!-- navigation -->
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">
-						<img src="images/logo.png" alt="" style="width: 300px;"/>
+							<img src="images/logo.png" alt="" style="width: 300px;" />
 						</a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-						    aria-expanded="false" aria-label="Toggle navigation">
+						<button class="navbar-toggler" type="button" data-toggle="collapse"
+							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav ml-auto"style="margin-top: 10px;">
-								
+							<ul class="navbar-nav ml-auto" style="margin-top: 10px;">
+
 								<li class="nav-item mx-xl-4 mx-lg-3 my-lg-0 my-3">
 									<a class="nav-link" href="#">About Us</a>
 								</li>
-								
+
 								<li class="nav-item">
 									<a class="nav-link" href="#bookings">View Bookings</a>
 								</li>
 								<li class="nav-item">
-								
-									<a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter3" href="#">Update Details</a>
+
+									<a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter3"
+										href="#">Update Details</a>
 								</li>
 							</ul>
 						</div>
@@ -131,23 +186,23 @@ table#t01 th {
 					<h1>Finding Tailored Deals</h1>
 					<h4 class="text-uppercase mt-md-3 mt-2 mb-md-4 mb-3">With a Click</h4>
 					<p class="text-white">
-						</p>
+					</p>
 					<a href="#" class="banner-button btn mt-md-5 mt-4">Know More</a>
 				</div>
 			</div>
 		</div>
 		<!-- //banner text -->
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		<!-- Update Details -->
+
+
+
+
+
+
+
+
+
+	<!-- Update Details -->
 	<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
@@ -162,23 +217,24 @@ table#t01 th {
 						<form action="#" method="post">
 							<div class="form-group">
 								<label>Update Address</label>
-								<textarea cols="50" rows="3" maxlength="10" placeholder=""></textarea>
+								<textarea class="form-control" cols="50" rows="3" maxlength="10" placeholder=""></textarea>
 							</div>
 							<div class="form-group">
 								<label>Update Contact</label>
-								<input type="text" class="form-control" name="contact" placeholder="" >
+								<input type="text" class="form-control" name="contact" placeholder="">
 							</div>
 							<div class="form-group">
 								<label>Update Email</label>
-								<input type="email" class="form-control" name="email" placeholder="" >
+								<input type="email" class="form-control" name="email" placeholder="">
 							</div>
-							
-							<div class="form-group" >
+
+							<div class="form-group">
 								<label>Upload Business image</label>
-								<input type="file" class="form-control" name="pic" placeholder="" accept="image/png,image/Png,image/PNG,image/JPEG,image/Jpeg,image/Jpg,image/JPG,image/jpeg">
+								<input type="file" class="form-control" name="pic" placeholder=""
+									accept="image/png,image/Png,image/PNG,image/JPEG,image/Jpeg,image/Jpg,image/JPG,image/jpeg">
 							</div>
 							<button type="submit" class="btn btn-primary submit mb-4">Update</button>
-							
+
 						</form>
 					</div>
 				</div>
@@ -186,45 +242,48 @@ table#t01 th {
 		</div>
 	</div>
 	<!-- //Update Details -->
-	
-	
-	
+
+
+
 	<!-- //banner -->
 
 	<!-- banner-bottom -->
 	<div class="serach-w3agile py-5">
-	<a name="bookings"></a>
+		<a name="bookings"></a>
 		<div class="container py-xl-4 py-lg-3">
-		
+
 			<h3 class="title-w3ls mb-md-5 mb-4 font-weight-bold text-center">Booking Details</h3>
-			
+
 			<div>
-			<table id="t01">
-  <tr>
-    <th>Event ID</th>
-    <th>Cient Name</th> 
-    <th>Contact</th>
-	<th>Start Date</th>
-	 <th>End Date</th>
-  </tr>
-  <tr>
-    <td>Book_001</td>
-    <td>Sahil</td>
-    <td>9596650999</td>
-	<td>yaha se </td>
-	<td>yaha tak</td>
-  </tr>
-  
-</table>
+				<table id="t01">
+					<tr>
+						<th>Event ID</th>
+						<th>Event Name</th>
+						<th>Cient Name</th>
+						<th>Contact</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+					</tr>
+					<?php
+						while($row = $result->fetch_assoc()) {
+							$start_date = date_format(date_create($row["start_date"]), "d/m/Y");
+							$end_date = date_format(date_create($row["end_date"]), "d/m/Y");
+					?>
+							<tr>
+								<td><?php echo $row["booking_id"]?></td>
+								<td><?php echo $row["event_title"]?></td>
+								<td><?php echo $row["client_name"]?></td>
+								<td><?php echo $row["contact"]?></td>
+								<td><?php echo $start_date ?></td>
+								<td><?php echo $end_date ?></td>
+							</tr>
+					<?php
+						}
+					?>
+					
+				</table>
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
+
 		</div>
 	</div>
 	<!-- //banner-bottom -->
@@ -236,16 +295,6 @@ table#t01 th {
 				<div class="col-lg-6 col-md-4 button">
 
 				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 			</div>
 		</div>
 	</div>
@@ -253,30 +302,32 @@ table#t01 th {
 
 	<!-- START CONTENT FRAME -->
 	<div class="container">
-		<div class="content-frame calendar-frame">            
+		<div class="content-frame calendar-frame">
 			<!-- START CONTENT FRAME TOP -->
-			<div class="content-frame-top">                        
-				<div class="page-title">                    
-				<center>	<h2><span class="fa fa-calendar"></span> Booking Calendar</h2>	</center>
-				</div>  <br><br>
-																						   
+			<div class="content-frame-top">
+				<div class="page-title">
+					<center>
+						<h2><span class="fa fa-calendar"></span> Booking Calendar</h2>
+					</center>
+				</div> <br><br>
+
 			</div>
 			<!-- END CONTENT FRAME TOP -->
-		
+
 			<!-- START CONTENT FRAME BODY -->
 			<div class="row">
 				<div class="col-md-12">
 					<div id="alert_holder"></div>
-					<div class="calendar">                                
-						<div id="calendar"></div>                            
+					<div class="calendar">
+						<div id="calendar"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- END CONTENT FRAME BODY -->
-	</div>               
-	<!-- END CONTENT FRAME -->    
-	
+	</div>
+	<!-- END CONTENT FRAME -->
+
 	<!-- testimonials -->
 	<div class="testimonials py-5" id="clients">
 		<div class="container py-xl-5 py-lg-3">
@@ -290,8 +341,10 @@ table#t01 th {
 						<ul class="slides">
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".</p>
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam Cumque nihil impedit
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
 											<i class="fas fa-star"></i>
@@ -322,8 +375,10 @@ table#t01 th {
 							</li>
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".</p>
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam Cumque nihil impedit
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
 											<i class="fas fa-star"></i>
@@ -354,8 +409,10 @@ table#t01 th {
 							</li>
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".</p>
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam Cumque nihil impedit
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
 											<i class="fas fa-star"></i>
@@ -417,7 +474,7 @@ table#t01 th {
 							<p>
 								<a href="mailto:contact@BanQuest.com"> contact@SiteHunt.com</a>
 							</p>
-							
+
 						</div>
 
 					</div>
@@ -430,7 +487,7 @@ table#t01 th {
 						<div class="col-md-9 address-right text-left">
 							<h6 class="ad-info text-uppercase mb-2">call us</h6>
 							<p>+91 9596650999</p>
-							
+
 						</div>
 					</div>
 				</div>
@@ -447,7 +504,7 @@ table#t01 th {
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<!-- footer -->
@@ -526,128 +583,127 @@ table#t01 th {
 	<script src="plugins/moment.min.js"></script>
 	<script src="plugins/fullcalendar/fullcalendar.min.js"></script>
 	<script>
-		var fullCalendar = function(){
-		var calendar = function(){
-            
-            if($("#calendar").length > 0){
-                function prepare_external_list(){
-                    
-                    $('#external-events .external-event').each(function() {
-                            var eventObject = {title: $.trim($(this).text())};
+		var fullCalendar = function () {
+			var calendar = function () {
 
-                            $(this).data('eventObject', eventObject);
-                            $(this).draggable({
-                                    zIndex: 999,
-                                    revert: true,
-                                    revertDuration: 0
-                            });
-                    });                    
-                    
-                }
-                
-                
-                var date = new Date();
-                var d = date.getDate();
-                var m = date.getMonth();
-                var y = date.getFullYear();
+				if ($("#calendar").length > 0) {
+					function prepare_external_list() {
 
-                prepare_external_list();
+						$('#external-events .external-event').each(function () {
+							var eventObject = { title: $.trim($(this).text()) };
 
-                var calendar = $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month'
-                    },
-                    editable: true,
-                    eventSources: {url: "/teacherszone/services/getCalendarEvents.php"},
-                    droppable: true,
-                    selectable: true,
-                    selectHelper: true,
-                    select: function(start, end, allDay) {
-                        var title = prompt('Event Title:');
-                        if (title) {
-                            calendar.fullCalendar('renderEvent',
-                            {
-                                title: title,
-                                start: start,
-                                end: end,
-                                allDay: allDay
-                            },
-                            true
-                            );
-							var st = new Date(start),
-								en = new Date(end);
-						
-							var startDate = st.getFullYear() + "/" + (st.getMonth() + 1) + "/" + st.getDate(),
-								endDate = en.getFullYear() + "/" + (en.getMonth() + 1) + "/" + en.getDate();
-							
-							//AJAX EVENT HERE
-							console.log("title: " + title + "\n");
-							console.log("Start: " + startDate + "\n");
-							console.log("end: " + endDate + "\n");
-							console.log("allDay: " + allDay + "\n");
-							
-							$.ajax({
-								url: "/teacherszone/services/addCalEvent.php", 
-								type: "GET",        
-								data: {
-									title: title,
-									start: startDate,
-									end: endDate,
-								},
-								success: function(res)  
-								{
-									if(res.result) {
-										alert("Event Added Successfully!!");
-									} else {
-										alert("There was an error. Please try again!!");
-										console.error("Error: " + res.msg);
-									}
-								},
-								error: function(XMLHttpRequest, textStatus, errorThrown) {
-									alert("Some network error occued")	;
-									var error = "Sorry a network error occurred while adding the event.\n";
-									var error = error + "Status: " + textStatus + "\n";
-									var error = error + "Error Thrown: " + errorThrown;
-									console.error(error);
-								}
+							$(this).data('eventObject', eventObject);
+							$(this).draggable({
+								zIndex: 999,
+								revert: true,
+								revertDuration: 0
 							});
-                        }
-                        calendar.fullCalendar('unselect');
-                    },
-                    drop: function(date, allDay) {
+						});
 
-                        var originalEventObject = $(this).data('eventObject');
-
-                        var copiedEventObject = $.extend({}, originalEventObject);
-
-                        copiedEventObject.start = date;
-                        copiedEventObject.allDay = allDay;
-
-                        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+					}
 
 
-                        if ($('#drop-remove').is(':checked')) {
-                            $(this).remove();
-                        }
+					var date = new Date();
+					var d = date.getDate();
+					var m = date.getMonth();
+					var y = date.getFullYear();
 
-                    }
-                });
-                
-                $("#new-event").on("click",function(){
-                    var et = $("#new-event-text").val();
-                    if(et != ''){
-                        $("#external-events").prepend('<a class="list-group-item external-event">'+et+'</a>');
-                        prepare_external_list();
-                    }
-                });
-                
-            }            
-        }
-        
-		calendar();
-    }();
+					prepare_external_list();
+
+					var calendar = $('#calendar').fullCalendar({
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'month'
+						},
+						editable: true,
+						eventSources: { url: "/sitehunt/services/getCalendarEvents.php" },
+						droppable: true,
+						selectable: true,
+						selectHelper: true,
+						select: function (start, end, allDay) {
+							var title = prompt('Event Title:');
+							if (title) {
+								calendar.fullCalendar('renderEvent',
+									{
+										title: title,
+										start: start,
+										end: end,
+										allDay: allDay
+									},
+									true
+								);
+								var st = new Date(start),
+									en = new Date(end);
+
+								var startDate = st.getFullYear() + "/" + (st.getMonth() + 1) + "/" + st.getDate(),
+									endDate = en.getFullYear() + "/" + (en.getMonth() + 1) + "/" + en.getDate();
+
+								//AJAX EVENT HERE
+								console.log("title: " + title + "\n");
+								console.log("Start: " + startDate + "\n");
+								console.log("end: " + endDate + "\n");
+								console.log("allDay: " + allDay + "\n");
+
+								$.ajax({
+									url: "/sitehunt/services/addCalEvent.php",
+									type: "GET",
+									data: {
+										title: title,
+										start: startDate,
+										end: endDate,
+									},
+									success: function (res) {
+										if (res.result) {
+											alert("Event Added Successfully!!");
+										} else {
+											alert("There was an error. Please try again!!");
+											console.error("Error: " + res.msg);
+										}
+									},
+									error: function (XMLHttpRequest, textStatus, errorThrown) {
+										alert("Some network error occued");
+										var error = "Sorry a network error occurred while adding the event.\n";
+										var error = error + "Status: " + textStatus + "\n";
+										var error = error + "Error Thrown: " + errorThrown;
+										console.error(error);
+									}
+								});
+							}
+							calendar.fullCalendar('unselect');
+						},
+						drop: function (date, allDay) {
+
+							var originalEventObject = $(this).data('eventObject');
+
+							var copiedEventObject = $.extend({}, originalEventObject);
+
+							copiedEventObject.start = date;
+							copiedEventObject.allDay = allDay;
+
+							$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+
+							if ($('#drop-remove').is(':checked')) {
+								$(this).remove();
+							}
+
+						}
+					});
+
+					$("#new-event").on("click", function () {
+						var et = $("#new-event-text").val();
+						if (et != '') {
+							$("#external-events").prepend('<a class="list-group-item external-event">' + et + '</a>');
+							prepare_external_list();
+						}
+					});
+
+				}
+			}
+
+			calendar();
+		}();
 	</script>
 </body>
 

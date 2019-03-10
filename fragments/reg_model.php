@@ -35,7 +35,7 @@
                             <label>City</label>
                             <select type="text" class="form-control" name="city" placeholder="" required="">
                                 <option value="Jammu">Jammu </option>
-                                <option value="New Delhi">New Delhi</option>
+                                <option value="Delhi">New Delhi</option>
                                 <option value="Mumbai">Mumbai</option>
                                 <option value="Chandigarh">Chandigarh</option>
                             </select>

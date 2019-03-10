@@ -11,16 +11,17 @@
                 <div class="login px-4 mx-auto mw-100">
                     <h5 class="text-center mb-4">Login Now</h5>
                     <form action="#" method="post" id="login-form">
+
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="text" placeholder="" required="">
+                            <input type="text" name="uname" class="form-control" name="text" placeholder="" required>
                         </div>
-
 
                         <div class="form-group">
                             <label class="mb-2">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="" required="">
+                            <input type="password" name="pass" class="form-control" name="password" placeholder="" required>
                         </div>
+
                         <button type="submit" class="btn btn-primary submit mb-4">Login</button>
                         <p class="text-center pb-4">
                             <a href="#">Forgot your password?</a>

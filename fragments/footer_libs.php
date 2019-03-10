@@ -7,7 +7,7 @@
 
 <!-- flexSlider (for testimonials) -->
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
-<script defer src="js/jquery.flexslider.js"></script>
+<script src="js/jquery.flexslider.js"></script>
 <script>
     $(window).load(function () {
         $('.flexslider').flexslider({
@@ -63,7 +63,14 @@
 
 <script src="js/bootstrap.js"></script>
 <!-- Necessary-JavaScript-File-For-Bootstrap -->
+<!-- jQuery-Photo-filter-lightbox-Gallery-plugin -->
+<script src="js/jquery-1.7.2.js"></script>
+<script src="js/jquery.quicksand.js"></script>
+<script src="js/script.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<!-- //jQuery-Photo-filter-lightbox-Gallery-plugin -->
 
 <!-- Custom JS files -->
 <script src="js/custom.js"></script>
+<script src="js/navbar.js"></script>
 <!-- //Js files -->

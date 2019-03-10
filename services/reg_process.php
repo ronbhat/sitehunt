@@ -56,3 +56,4 @@
         //$data=htmlspecialchars($data);
         return $data;
     }
+?>

@@ -18,16 +18,6 @@
     }
 
     /**
-     * Function to login the user
-     */
-    function loginUser(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var formData = $this.serialize();
-        console.log(formData);
-    }
-
-    /**
      * Function to register the user
      */
     function registerUser(e) {
@@ -49,6 +39,42 @@
                 } else {
                     alert('Some server error occurred!!');
                     console.error(res.msg);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                alert('Some network error occurred!!');
+            }
+        });
+    }
+
+    /**
+     * Function to login the user
+     */
+    function loginUser(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var formData = $this.serialize();
+        console.log("Form Data: ", formData);
+        $.ajax({
+            url: 'services/login_process.php',
+            method: 'POST',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (res) {
+                if (res.result) {
+                    window.location = "bindex.php";
+                } else {
+                    if (res.code === 1) {
+                        alert('Incorrect Password!!');
+                    } else if (res.code == 2) {
+                        alert('Wrong username!!');
+                    } else {
+                        alert('Some server error occurred!!');
+                        console.error(res.msg);
+                    }
                 }
             },
             error: function (err) {

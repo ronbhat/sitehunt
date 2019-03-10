@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -56,14 +58,9 @@
 									</ul>
 								</div>
 								<!-- //social icons -->
-								<div class="col-4 header-loginw3ls text-lg-right text-center">
-									<a href="#" class="log" data-toggle="modal" data-target="#exampleModalCenter1">
-										<i class="fas fa-user mr-2"></i> Login</a>
-								</div>
-								<div class="col-4 header-loginw3ls">
-									<a href="#" class="log" data-toggle="modal" data-target="#exampleModalCenter2">
-										<i class="fas fa-key mr-2"></i> Register</a>
-								</div>
+
+								<?php require_once('fragments/nav_buttons.php')?>
+
 							</div>
 						</div>
 					</div>
@@ -94,13 +91,9 @@
 	<!-- Search Results -->
 
 	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-		<div class="modal-dialog" role="document">
-			<center>
-				<div class="modal-content" style="width: 902px;">
-
-
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+				<div class="modal-content">
 					<div class="modal-body">
-
 						<table id="t01">
 							<tr>
 								<h2>Search Results<h2>
@@ -121,18 +114,14 @@
 							</tr>
 
 						</table>
-
-
-
-
 					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 					</div>
 				</div><!-- /.modal-content -->
-			</center>
-
+			
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<!-- //Search Results -->
@@ -151,29 +140,26 @@
 			<h3 class="title-w3ls mb-md-5 mb-4 font-weight-bold text-center">Begin Your Search</h3>
 			<div class="place-grids">
 
-
-
-
 				<form class="form-inline" onsubmit="openModal()" id="myForm">
 					<div class="form-group" style="margin-right: 50px;">
 						<label for="city">Choose City:</label>
-						<select class="form-control" id="city">
-							<option>Jammu & Kashmir</option>
-							<option>New Delhi</option>
-							<option>Mumbai</option>
-							<option>Chandigarh</option>
+						<select class="form-control" name="city" id="city">
+							<option value="Jammu">Jammu </option>
+							<option value="Delhi">New Delhi</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Chandigarh">Chandigarh</option>
 						</select>
 					</div>
 					<div class="form-group" style="margin-right: 50px;">
 						<label for="type">Choose Type:</label>
-						<select class="form-control" id="type">
-							<option>Banquet Hall</option>
-							<option>Mini Party</option>
-							<option>Resorts</option>
-							<option>Conference Halls</option>
+						<select class="form-control" name="buss_type" id="type">
+							<option value="Hall">Banquet Hall</option>
+							<option value="Party">Mini Party</option>
+							<option value="Resort">Resorts</option>
+							<option value="Conference">Conference Halls</option>
 						</select>
 					</div>
-					<div class="form-group" style="margin-right: 50px;">
+					<div class="form-group" name="date" style="margin-right: 50px;">
 						<label for="date">Date:</label><br>
 						<input type="date" class="form-control" id="date">
 					</div>
@@ -198,7 +184,8 @@
 						<h4>Why Choose SiteHunt ?</h4>
 						<h6 class="mt-3 mb-xl-5 mb-4">Whats Our USP !!</h6>
 						<p>
-							We At SiteHunt believe in Creating an experience for both our Customers & the Service Providers to create
+							We At SiteHunt believe in Creating an experience for both our Customers & the Service
+							Providers to create
 							a movement towards Digitization in the Traditional Event organising ways !!
 
 						</p>
@@ -352,7 +339,8 @@
 									<li class="py-2 border-bottom"></li>
 									<li class="py-2">-</li>
 								</ul>
-								<a href="#" class="btn btn-block py-2" data-toggle="modal" data-target="#exampleModalCenter2">
+								<a href="#" class="btn btn-block py-2" data-toggle="modal"
+									data-target="#exampleModalCenter2">
 									<i class="far fa-user"></i> Get Started</a>
 							</div>
 						</div>
@@ -418,9 +406,12 @@
 				<div class="col-lg-6 left-build-wthree aboutright-agilewthree mt-0">
 					<h4>Some Approximations</h4>
 					<h6 class="mt-3 mb-5">Some words about our Strategy</h6>
-					<p>If we consider only 1000 cities initially out of 4000 in India with an average of 30 Service Providers
-						listed in each being charged at a nominal subscription of INR 750/month. Then the Total Revenue Generated
-						will be around : 1000*30*750 = INR 2,25,00,000/month and this also makes it 11,25,00,000/year if we only
+					<p>If we consider only 1000 cities initially out of 4000 in India with an average of 30 Service
+						Providers
+						listed in each being charged at a nominal subscription of INR 750/month. Then the Total Revenue
+						Generated
+						will be around : 1000*30*750 = INR 2,25,00,000/month and this also makes it 11,25,00,000/year if
+						we only
 						expect 5 months of Efficient working due to seasonal market interference.</p>
 				</div>
 				<div class="col-lg-6 text-lg-left text-center mt-lg-0 mt-md-5 mt-4">
@@ -444,9 +435,11 @@
 						<ul class="slides">
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam
 										Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".
 									</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
@@ -478,9 +471,11 @@
 							</li>
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam
 										Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".
 									</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
@@ -512,9 +507,11 @@
 							</li>
 							<li>
 								<div class="w3_testimonials_grid">
-									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id quod possimus, Nam
+									<p>"Nam Cumque nihil impedit quo minuslibero tempore, nihil impedit quo minus id
+										quod possimus, Nam
 										Cumque nihil impedit
-										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil impedit omnis voluptas".
+										quo minuslibero tempore, cum soluta nobis est eligendi optio cumque nihil
+										impedit omnis voluptas".
 									</p>
 									<ul class="testi-w3ls-rate mt-4">
 										<li>
@@ -663,7 +660,6 @@
 
 	<!-- Include Footer Libs -->
 	<?php require_once('./fragments/footer_libs.php') ?>
-
 </body>
 
 </html>

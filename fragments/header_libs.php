@@ -16,6 +16,8 @@
 <!-- Custom-Files -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <!-- Bootstrap-Core-CSS -->
+<!-- gallery  -->
+<link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <!-- Style-CSS -->
 <link rel="stylesheet" href="css/fontawesome-all.css">
