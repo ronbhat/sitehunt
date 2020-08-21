@@ -4,7 +4,7 @@
 <html lang="zxx">
 
 <head>
-	<title>SiteHunt</title>
+	<title>SiteHuntvds,bckjdjkdjkvb</title>
 
 	<!-- Include Header Libs -->
 	<?php require_once('./fragments/header_libs.php') ?>
